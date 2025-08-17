@@ -4,7 +4,7 @@ svg.logo { position:absolute; top:50%; left:50%; width:100%; height:100%; transf
 .bottom-group{transform:translateY(150%); animation:moveUp 2s ease-out forwards;}
 @keyframes moveDown{to{transform:translateY(0);}}
 @keyframes moveUp{to{transform:translateY(0);}}
-h1{position:absolute; top:10%; left:50%; transform:translate(-50%,-50%); font-size:10vw; text-align:center; z-index:5; font-weight:bold; text-transform:uppercase; white-space:nowrap;}
+h1{position:absolute; top:10%; left:50%; transform:translate(-50%,-50%); font-size:20vw; text-align:center; z-index:5; font-weight:bold; text-transform:uppercase; white-space:nowrap;}
 h1 span{ text-shadow:0 0 5px #00ff00,0 0 10px #00ff00,0 0 20px #00ff00; transition: all 0.5s ease;}
 .subtitle-container{position:absolute; top:26%; left:50%; transform:translateX(-50%); display:flex; gap:0.1vw; white-space:nowrap; font-size:6vw; z-index:8;}
 .subtitle-word{opacity:0; display:inline-block;}
