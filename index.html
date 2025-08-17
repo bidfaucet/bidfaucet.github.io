@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BidFaucet - Free Crypto Faucet</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Logo Ethereum -->
+<svg class="logo" viewBox="0 0 256 417" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradientTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1f8fff"/>
+      <stop offset="50%" stop-color="#6a5acd"/>
+      <stop offset="100%" stop-color="#00ced1"/>
+    </linearGradient>
+    <linearGradient id="gradientBottom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00ced1"/>
+      <stop offset="50%" stop-color="#c0c0c0"/>
+      <stop offset="100%" stop-color="#1f8fff"/>
+    </linearGradient>
+  </defs>
+  <g class="top-group">
+    <polygon fill="url(#gradientTop)" points="127.9,0 124.3,13.8 124.3,279.9 127.9,283.5 255.8,208.1"/>
+    <polygon fill="url(#gradientTop)" opacity="0.6" points="127.9,0 0,208.1 127.9,283.5 127.9,152.1"/>
+  </g>
+  <g class="bottom-group">
+    <polygon fill="url(#gradientBottom)" points="127.9,308.4 125.9,310.9 125.9,416.6 127.9,422.3 256,233.4"/>
+    <polygon fill="url(#gradientBottom)" points="127.9,422.3 127.9,308.4 0,233.4"/>
+    <polygon fill="url(#gradientBottom)" opacity="0.2" points="127.9,283.5 255.8,208.1 127.9,152.1"/>
+    <polygon fill="url(#gradientBottom)" opacity="0.2" points="0,208.1 127.9,283.5 127.9,152.1"/>
+  </g>
+</svg>
+
+<!-- Title & Subtitle -->
+<h1 id="title"><span>BID</span><span class="chain">FAUCET</span></h1>
+<div id="subtitle" class="subtitle-container"></div>
+
+<!-- Menu -->
+<div class="menu-buttons">
+  <button class="menu-btn"><span>Faucet</span></button>
+  <button class="menu-btn"><span>PTC</span></button>
+  <button class="menu-btn"><span>Mining</span></button>
+</div>
+
+<!-- Step 1: Email Form -->
+<div id="emailContainer">
+  <input type="email" id="emailInput" placeholder="Enter FaucetPay email">
+  <button id="emailSubmit">Login</button>
+</div>
+
+<!-- Step 2: Countdown Timer -->
+<div id="timerContainer">
+  <p>⏳ Claim available in <span id="countdown">10</span> seconds</p>
+</div>
+
+<!-- Step 3: Claim Button -->
+<button id="claimButton" class="claim-btn">Claim Free Crypto</button>
+
+<!-- Step 4: Captcha -->
+<div id="captchaPopup">
+  <h2 id="captchaQuestion">🛡 Complete the captcha!</h2>
+  <input type="text" id="captchaInput" placeholder="Enter your answer">
+  <button id="captchaSubmit">Submit</button>
+</div>
+
+<!-- Step 5: Success Message -->
+<p id="message"></p>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><b>X</b></a>
+    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+    <a href="#"><i class="fab fa-youtube"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+  </div>
+  <div>© 2025 FreeChain</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
