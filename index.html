@@ -47,10 +47,45 @@
 </div>
 
 <!-- Step 1: Email Form -->
-<div id="emailContainer">
-  <input type="email" id="emailInput" placeholder="Enter FaucetPay email">
-  <button id="emailSubmit">Login</button>
-</div>
+<!-- claim.html -->
+<form id="claimForm">
+  <label>Email FaucetPay:</label><br>
+  <input type="email" id="email" required><br><br>
+
+  <label>Pilih Coin:</label><br>
+  <select id="coin" required>
+    <option value="BTC">Bitcoin (BTC)</option>
+    <option value="ETH">Ethereum (ETH)</option>
+    <option value="DOGE">Dogecoin (DOGE)</option>
+    <option value="LTC">Litecoin (LTC)</option>
+    <option value="BCH">Bitcoin Cash (BCH)</option>
+    <option value="DASH">Dash (DASH)</option>
+    <option value="DGB">DigiByte (DGB)</option>
+    <option value="TRX">Tron (TRX)</option>
+    <option value="USDT">Tether TRC20 (USDT)</option>
+    <option value="FEY">Feyorra (FEY)</option>
+    <option value="ZEC">Zcash (ZEC)</option>
+    <option value="BNB">Binance Coin (BNB)</option>
+    <option value="SOL">Solana (SOL)</option>
+    <option value="XRP">Ripple (XRP)</option>
+    <option value="POL">Polygon (POL)</option>
+    <option value="ADA">Cardano (ADA)</option>
+    <option value="TON">Toncoin (TON)</option>
+    <option value="XLM">Stellar (XLM)</option>
+    <option value="USDC">USD Coin (USDC)</option>
+    <option value="XMR">Monero (XMR)</option>
+    <option value="TARA">Taraxa (TARA)</option>
+    <option value="TRUMP">Official Trump (TRUMP)</option>
+    <option value="PEPE">Pepe (PEPE)</option>
+  </select><br><br>
+
+  <button type="submit">Claim</button>
+</form>
+
+<div id="result"></div>
+
+<script src="price.js"></script>
+<script src="wd.js"></script>
 
 <!-- Step 2: Countdown Timer -->
 <div id="timerContainer">
