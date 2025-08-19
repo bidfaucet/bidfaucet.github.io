@@ -106,14 +106,38 @@ claimButton.addEventListener('click', ()=>{
 });
 
 // ===== Captcha Submit =====
-captchaSubmit.addEventListener('click', ()=>{
+captchaSubmit.addEventListener('click', async ()=>{
     const userAnswer=captchaInput.value.trim();
     if(userAnswer==currentAnswer){
         captchaPopup.style.display='none';
         claimButton.style.display='none';
-        messageEl.textContent='✅ Success! You claimed crypto.';
+        messageEl.textContent='⏳ Processing withdrawal...';
+
+        try {
+            const email = document.getElementById('emailInput').value;
+
+            const res = await fetch("/api/wd", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    to_address: email,    // pakai email FaucetPay user
+                    amount: 0.00000001,       // contoh jumlah
+                    currency: "BTC"       // contoh koin
+                })
+            });
+
+            const data = await res.json();
+
+            if(data.status === 200){
+                messageEl.textContent = "✅ Withdraw sent to FaucetPay!";
+            } else {
+                messageEl.textContent = "❌ Failed: " + data.message;
+            }
+        } catch (err) {
+            messageEl.textContent = "⚠️ Error: " + err.message;
+        }
+
     } else {
-        // Jika salah, buat soal baru
         alert('❌ Wrong answer! A new captcha has been generated.');
         const newCaptcha = generateCaptcha();
         captchaQuestion.textContent = newCaptcha.question;
