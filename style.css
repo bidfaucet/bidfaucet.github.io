@@ -1,3 +1,4 @@
+ini css nya
 html, body { margin:0; padding:0; width:100%; height:100%; background:#0a0a1f; overflow:hidden; font-family:Arial,sans-serif; }
 svg.logo { position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%); z-index:0; filter: drop-shadow(0 0 20px #1f8fff) drop-shadow(0 0 15px #6a5acd);}
 .top-group{transform:translateY(-150%); animation:moveDown 2s ease-out forwards;}
@@ -21,101 +22,80 @@ h1 span{ text-shadow:0 0 5px #00ff00,0 0 10px #00ff00,0 0 20px #00ff00; transiti
 .social-icons a{margin:0 6px; color:#fff; text-decoration:none; font-size:18px;}
 .social-icons a:hover{color:#00f0ff;}
 
-/* ===== Container Form ===== */
-#emailContainer {
-  position: relative;
-  display: flex;
-  flex-direction: column; /* form vertikal */
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 400px; /* jangan terlalu lebar */
-  margin: 0 auto;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-}
+/* Containers */
+#emailContainer, #timerContainer { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; z-index:20; color: #ffffff}
+#timerContainer { display:none; }
+#emailContainer input, #captchaPopup input { padding:10px; font-size:16px; margin:10px 0; border-radius:5px; border:none; }
+button#emailSubmit { padding:10px 20px; font-size:16px; cursor:pointer; }
+button.claim-btn { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); padding:15px 30px; font-size:18px; background:#00ff99; color:#000; border:none; border-radius:10px; cursor:pointer; z-index:25; display:none; }
+button.claim-btn:disabled{background:#555; cursor:not-allowed;}
 
-/* ===== Input Email ===== */
-#emailContainer input[type="email"] {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 2px solid #00ffff;
-  background: #000;
-  color: #00ffff;
-  font-weight: bold;
-  text-align: center;
-  box-shadow: 0 0 10px #00ffff;
-  outline: none;
-}
-
-/* ===== Claim Button ===== */
-#claimButton {
-  display: inline-block; /* tampilkan saat JS mengaktifkan */
-  padding: 12px 25px;
-  background: linear-gradient(90deg, #00f0ff, #00ffaa);
-  color: #fff;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  box-shadow: 0 0 15px #00ffff;
-  transition: 0.2s all ease;
-  z-index: 25;
-}
-
-#claimButton:hover {
-  box-shadow: 0 0 25px #00ffff;
-}
-
-/* ===== Message Sukses/Error ===== */
-#message {
-  display: block; /* selalu terlihat jika JS aktif */
-  margin-top: 15px;
-  text-align: center;
-  font-size: 16px;
-  color: #00ffea;
-  text-shadow: 0 0 5px #00ffff;
-  z-index: 30;
-}
-
-/* ===== Popup Captcha ===== */
+/* Captcha popup futuristik /
 #captchaPopup {
-  display: none; /* tampil saat JS trigger */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(135deg, #1f8fff, #00ced1);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 20px #1f8fff;
-  z-index: 9999;
-  text-align: center;
-  color: white;
-  font-weight: bold;
+display: none;
+position: fixed;
+top:0; left:0;
+width:100%; height:100%;
+background: rgba(10,10,30,0.85); / semi-transparent dark /
+backdrop-filter: blur(5px); / blur background */
+color: #0ff;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+z-index: 50;
+font-family: 'Orbitron', sans-serif;
+animation: popupFadeIn 0.5s ease forwards;
 }
 
-/* ===== Countdown Timer ===== */
-#timerContainer {
-  display: none; /* tampil saat JS trigger */
-  margin-top: 20px;
-  text-align: center;
-  font-size: 18px;
-  color: #00ffff;
-  text-shadow: 0 0 5px #1f8fff;
-  z-index: 30;
+#captchaPopup h2 {
+font-size: 2rem;
+color: #0ff;
+text-shadow: 0 0 5px #0ff, 0 0 15px #0ff, 0 0 25px #00ffffaa;
+margin-bottom: 15px;
+text-align: center;
 }
 
-/* ===== Responsif ===== */
-@media screen and (max-width: 500px) {
-  #emailContainer {
-    max-width: 90%;
-  }
-
-  #claimButton {
-    width: 100%;
-  }
+#captchaPopup input {
+padding: 12px 15px;
+font-size: 1.2rem;
+border-radius: 8px;
+border: 1px solid #0ff;
+background: rgba(0,0,0,0.5);
+color: #0ff;
+text-align: center;
+outline: none;
+box-shadow: 0 0 10px #0ff, 0 0 20px #00ffff55 inset;
+margin-bottom: 15px;
+width: 200px;
 }
+
+#captchaPopup input::placeholder {
+color: #0ff99;
+}
+
+#captchaPopup button {
+padding: 12px 25px;
+font-size: 1.1rem;
+border-radius: 8px;
+border: none;
+background: #00ffff33;
+color: #0ff;
+cursor: pointer;
+text-transform: uppercase;
+font-weight: bold;
+box-shadow: 0 0 10px #0ff, 0 0 20px #00ffffaa;
+transition: 0.3s ease all;
+}
+#captchaPopup button:hover {
+background: #0ff1;
+box-shadow: 0 0 15px #0ff, 0 0 30px #00ffffbb;
+}
+
+/* Animasi popup /
+@keyframes popupFadeIn {
+from { opacity: 0; transform: scale(0.8); }
+to { opacity: 1; transform: scale(1); }
+}
+/ Success message */
+#message { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:24px; font-weight:bold; color:#0f0; text-align:center; z-index:30; }
+
