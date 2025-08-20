@@ -21,14 +21,83 @@ h1 span{ text-shadow:0 0 5px #00ff00,0 0 10px #00ff00,0 0 20px #00ff00; transiti
 .social-icons a{margin:0 6px; color:#fff; text-decoration:none; font-size:18px;}
 .social-icons a:hover{color:#00f0ff;}
 
-/* Containers */
-#emailContainer, #timerContainer { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); display:flex; flex-direction:column; align-items:center; z-index:20; color: #ffffff}
-#timerContainer { display:none; }
-#emailContainer input, #captchaPopup input { padding:10px; font-size:16px; margin:10px 0; border-radius:5px; border:none; }
-button#emailSubmit { padding:10px 20px; font-size:16px; cursor:pointer; }
-button.claim-btn { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); padding:15px 30px; font-size:18px; background:#00ff99; color:#000; border:none; border-radius:10px; cursor:pointer; z-index:25; display:none; }
-button.claim-btn:disabled{background:#555; cursor:not-allowed;}
+/* Container form login */
+#emailContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  z-index: 20;
+}
 
+/* Kotak form */
+#emailContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 20, 40, 0.85);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #00f0ff55, inset 0 0 12px #00ffff33;
+  border: 1px solid #00f0ff66;
+  max-width: 350px;
+  width: 90%;
+}
+
+/* Input email */
+#emailContainer input {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #00f0ff88;
+  background: rgba(0, 0, 20, 0.7);
+  color: #0ff;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 8px #00f0ff88 inset, 0 0 10px #00f0ff55;
+  transition: 0.3s ease all;
+}
+
+#emailContainer input::placeholder {
+  color: #00f0ff99;
+}
+
+#emailContainer input:focus {
+  border-color: #0ff;
+  box-shadow: 0 0 12px #00f0ff, 0 0 20px #00f0ffaa inset;
+}
+
+/* Tombol login */
+#emailSubmit {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #00f0ff66, #00ffaa66);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px #00f0ff, 0 0 20px #00ffaa66;
+  transition: 0.3s ease all;
+}
+
+#emailSubmit:hover {
+  background: linear-gradient(90deg, #00ffaa88, #00f0ffaa);
+  box-shadow: 0 0 18px #0ff, 0 0 25px #00ffaaaa;
+  transform: scale(1.05);
+}
+
+#emailSubmit:active {
+  transform: scale(0.95);
+}
 /* Captcha popup futuristik */
 #captchaPopup {
     display: none;
