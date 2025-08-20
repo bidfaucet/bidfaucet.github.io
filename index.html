@@ -5,7 +5,146 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BidFaucet - Free Crypto Faucet</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="style.css">
+<style>
+/* Reset & Body */
+html, body { margin:0; padding:0; width:100%; height:100%; background:#0a0a1f; overflow:hidden; font-family:Arial,sans-serif; }
+
+/* Logo Ethereum */
+svg.logo { position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%); z-index:0; filter: drop-shadow(0 0 20px #1f8fff) drop-shadow(0 0 15px #6a5acd);}
+.top-group{transform:translateY(-150%); animation:moveDown 2s ease-out forwards;}
+.bottom-group{transform:translateY(150%); animation:moveUp 2s ease-out forwards;}
+@keyframes moveDown{to{transform:translateY(0);}}
+@keyframes moveUp{to{transform:translateY(0);}}
+
+h1{position:absolute; top:10%; left:50%; transform:translate(-50%,-50%); font-size:20vw; text-align:center; z-index:5; font-weight:bold; text-transform:uppercase; white-space:nowrap;}
+h1 span{ text-shadow:0 0 5px #00ff00,0 0 10px #00ff00,0 0 20px #00ff00; transition: all 0.5s ease;}
+.subtitle-container{position:absolute; top:26%; left:50%; transform:translateX(-50%); display:flex; gap:0.1vw; white-space:nowrap; font-size:6vw; z-index:8;}
+.subtitle-word{opacity:0; display:inline-block;}
+@keyframes slideIn{from{opacity:0; transform:translateX(100px);} to{opacity:1; transform:translateX(0);}}
+@keyframes slideOut{from{opacity:1; transform:translateX(0);} to{opacity:0; transform:translateX(100px);}}
+
+.menu-buttons{position:absolute; top:10px; right:10px; display:flex; gap:5px; z-index:10;}
+.menu-btn{background: rgba(0,240,255,0.3); color:#fff; border:1px solid rgba(0,240,255,0.5); font-size:10px; font-weight:bold; padding:2px 10px; border-radius:2px; cursor:pointer; box-shadow:0 0 15px rgba(0,240,255,0.5); transform:skewX(-20deg); text-align:center; transition:all 0.3s ease;}
+.menu-btn span{display:inline-block; transform:skewX(20deg);}
+.menu-btn:hover{background: rgba(0,240,255,0.1); box-shadow:0 0 25px #00f0ff, inset 0 0 12px #00f0ff33;}
+.menu-btn:active{transform: skewX(-20deg) scale(0.95);}
+.menu-btn.active{background: rgba(0,240,255,0.5); border:1px solid rgba(0,240,255,0.8); box-shadow:0 0 25px #00f0ff, inset 0 0 15px #00f0ff33;}
+
+.footer{position:absolute; bottom:10px; width:100%; text-align:center; font-size:14px; color:#fff; z-index:10;}
+.social-icons{margin-bottom:5px;}
+.social-icons a{margin:0 6px; color:#fff; text-decoration:none; font-size:18px;}
+.social-icons a:hover{color:#00f0ff;}
+
+/* Container form login */
+#emailContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  z-index:20;
+  pointer-events:auto;
+}
+
+/* Kotak form */
+#emailContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 20, 40, 0.85);
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #00f0ff55, inset 0 0 12px #00ffff33;
+  border: 1px solid #00f0ff66;
+  max-width: 350px;
+  width: 90%;
+}
+
+/* Input & Select */
+#emailContainer input, #emailContainer select {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #00f0ff88;
+  background: rgba(0, 0, 20, 0.7);
+  color: #0ff;
+  text-align: center;
+  outline: none;
+  box-shadow: 0 0 8px #00f0ff88 inset, 0 0 10px #00f0ff55;
+  transition: 0.3s ease all;
+}
+
+#emailContainer input::placeholder, #emailContainer select { color: #00f0ff99; }
+
+#emailContainer input:focus, #emailContainer select:focus {
+  border-color: #0ff;
+  box-shadow: 0 0 12px #00f0ff, 0 0 20px #00f0ffaa inset;
+}
+
+/* Tombol login & denyut */
+@keyframes pulse {
+  0%,100% { transform: scale(1); box-shadow: 0 0 12px #00f0ff,0 0 20px #00ffaa66; }
+  50% { transform: scale(1.05); box-shadow: 0 0 25px #00f0ff,0 0 35px #00ffaa88; }
+}
+
+#emailSubmit, #claimButton {
+  margin-top: 15px;
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #00f0ff66, #00ffaa66);
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px #00f0ff, 0 0 20px #00ffaa66;
+  transition: 0.3s ease all;
+  animation: pulse 2s infinite;
+}
+
+#emailSubmit:hover, #claimButton:hover {
+  background: linear-gradient(90deg, #00ffaa88, #00f0ffaa);
+  box-shadow: 0 0 30px #0ff, 0 0 40px #00ffaaaa;
+}
+
+#emailSubmit:active, #claimButton:active { transform: scale(0.95); }
+
+/* Claim Button */
+#claimButton { position:absolute; bottom:20%; left:50%; transform:translateX(-50%); z-index:25; }
+
+/* Captcha popup futuristik */
+#captchaPopup {
+    display: none;
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(10,10,30,0.85);
+    backdrop-filter: blur(5px);
+    color: #0ff;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 100;
+    font-family: 'Orbitron', sans-serif;
+    animation: popupFadeIn 0.5s ease forwards;
+}
+
+#captchaPopup h2 { font-size:2rem; color:#0ff; text-shadow:0 0 5px #0ff,0 0 15px #0ff,0 0 25px #00ffffaa; margin-bottom:15px; text-align:center; }
+#captchaPopup input { padding:12px 15px; font-size:1.2rem; border-radius:8px; border:1px solid #0ff; background: rgba(0,0,0,0.5); color:#0ff; text-align:center; outline:none; box-shadow:0 0 10px #0ff,0 0 20px #00ffff55 inset; margin-bottom:15px; width:200px; }
+#captchaPopup input::placeholder { color:#0ff99; }
+#captchaPopup button { padding:12px 25px; font-size:1.1rem; border-radius:8px; border:none; background:#00ffff33; color:#0ff; cursor:pointer; text-transform:uppercase; font-weight:bold; box-shadow:0 0 10px #0ff,0 0 20px #00ffffaa; transition:0.3s ease all; }
+#captchaPopup button:hover { background:#0ff1; box-shadow:0 0 15px #0ff,0 0 30px #00ffffbb; }
+@keyframes popupFadeIn { from { opacity:0; transform: scale(0.8); } to { opacity:1; transform: scale(1); } }
+
+/* Success message */
+#message { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); font-size:24px; font-weight:bold; color:#0f0; text-align:center; z-index:105; }
+</style>
 </head>
 <body>
 
@@ -82,8 +221,6 @@
     <button type="submit" id="emailSubmit">Claim</button>
   </form>
 </div>
-<script src="price.js"></script>
-<script src="wd.js"></script>
 
 <!-- Step 2: Countdown Timer -->
 <div id="timerContainer">
@@ -116,6 +253,5 @@
   <div>© 2025 FreeChain</div>
 </footer>
 
-<script src="script.js"></script>
 </body>
 </html>
